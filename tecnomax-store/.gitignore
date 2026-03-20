@@ -1,0 +1,14 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+backend/productos.json
+.env
+.DS_Store
+Thumbs.db
+setup.bat
+setup.sh
+
