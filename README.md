@@ -2,7 +2,6 @@
 
 ![TecnoMax Banner](https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80)  
 
-
 **TecnoMax-Store** es una aplicación web de gestión de inventario para una tienda de dispositivos tecnológicos (móviles, TVs, consolas, videojuegos, PCs y laptops). Con un diseño **heavy metal / industrial** y una paleta de colores **azul tecno y naranja**, ofrece una experiencia de usuario robusta y visualmente impactante.  
 **Totalmente responsive** y con almacenamiento local (localStorage), permite **agregar, editar, eliminar y buscar productos**, además de contar con un **modal de detalles** y **filtros rápidos por categoría**.
 
@@ -41,18 +40,18 @@
 
 | Vista principal | Modal de detalles | Búsqueda avanzada |
 |-----------------|-------------------|-------------------|
-| ![Productos](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) | ![Modal](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) | ![Búsqueda](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) |
-
-
+| ![Productos](https://copilot.microsoft.com/th/id/BCO.947481e8-568d-4e95-bfed-bc92e6c59fc0.png) | ![Modal](https://copilot.microsoft.com/th/id/BCO.2f0b3908-3a9e-49cb-88db-d11fc839397b.png) | ![Búsqueda](https://copilot.microsoft.com/th/id/BCO.8c7d46a8-b7e3-417a-be92-32ffe07e1a86.png) |
 
 ---
 
 ## 🛠️ Instalación y uso
 
 1. **Clona el repositorio**  
+
    ```bash
    git clone https://github.com/tu-usuario/tecnomax-store.git
    ```
+
 2. **Abre el archivo `index.html`** en tu navegador favorito (Chrome, Firefox, Edge, etc.)  
    *(No requiere dependencias ni servidor)*
 
@@ -98,9 +97,9 @@ Este proyecto está bajo la licencia **MIT**. Puedes ver el archivo [LICENSE](LI
 
 ## 🌟 Autor
 
-Creado con ❤️ por **Tu Nombre**  
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tu-usuario)  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/tu-perfil)
+Creado con ❤️ por Akendri Perez  
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Akendri21)  
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/tecnomax_storerd/)
 
 ---
 

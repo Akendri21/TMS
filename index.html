@@ -510,16 +510,9 @@
                     <option value="PC">💻 PC</option>
                     <option value="Laptop">💻 Laptop</option>
                 </select>
-
             </div>
-            <div class="form-group">
-
-<label>Precio (DOP)</label>
-
-                <input type="number" id="prodPrice" placeholder="599" min="0" step="0.01">
-            </div>
+            <div class="form-group"><label>Precio (€)</label><input type="number" id="prodPrice" placeholder="599" min="0" step="0.01"></div>
             <div class="form-group"><label>URL imagen</label><input type="url" id="prodImage" placeholder="https://ejemplo.com/imagen.jpg"></div>
-
             <div class="form-group"><label>Descripción</label><input type="text" id="prodDesc" placeholder="Breve descripción"></div>
             <div>
                 <button class="btn" id="addProductBtn">➕ Agregar producto</button>
@@ -583,9 +576,7 @@
         <h2>⚡ Ofertas especiales</h2>
         <div class="alert-card">
             <span class="alert-icon">🔥</span>
-
-<span>Productos con precio inferior a 18150 DOP</span>
-
+            <span>Productos con precio inferior a 300 €</span>
         </div>
         <div id="offersContainer"></div>
         <div class="table-responsive">
@@ -604,9 +595,7 @@
             <img id="modalImage" class="modal-img" src="" alt="Producto">
             <p><strong>Nombre:</strong> <span id="modalName"></span></p>
             <p><strong>Categoría:</strong> <span id="modalCategory"></span></p>
-
-<span id="modalPrice"></span> DOP
-
+            <p><strong>Precio:</strong> <span id="modalPrice"></span> €</p>
             <p><strong>Descripción:</strong> <span id="modalDesc"></span></p>
         </div>
     </div>
@@ -692,11 +681,10 @@
                 ];
             }
 
-function initData() {
-                let productos = JSON.parse(localStorage.getItem('productos')) || [];
-                if (productos.length === 0) {
-                    const iniciales = generarProductosIniciales();
-                    localStorage.setItem('productos', JSON.stringify(iniciales));
+            function initData() {
+                if (!localStorage.getItem('productos')) {
+                    const productos = generarProductosIniciales();
+                    localStorage.setItem('productos', JSON.stringify(productos));
                 }
             }
             initData();
@@ -816,7 +804,7 @@ function initData() {
             // Renderizar ofertas
             function renderOffers() {
                 const productos = getProductos();
-p.precio < 300
+                const ofertas = productos.filter(p => p.precio < 300);
                 offersTableBody.innerHTML = '';
                 if (ofertas.length === 0) {
                     offersTableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No hay ofertas en este momento</td></tr>';
