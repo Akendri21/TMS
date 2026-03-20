@@ -41,6 +41,11 @@
 | Vista principal | Modal de detalles | Búsqueda avanzada |
 |-----------------|-------------------|-------------------|
 | ![Productos](https://copilot.microsoft.com/th/id/BCO.947481e8-568d-4e95-bfed-bc92e6c59fc0.png) | ![Modal](https://copilot.microsoft.com/th/id/BCO.2f0b3908-3a9e-49cb-88db-d11fc839397b.png) | ![Búsqueda](https://copilot.microsoft.com/th/id/BCO.8c7d46a8-b7e3-417a-be92-32ffe07e1a86.png) |
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ea79f205061ba632d3b434584b12fff8edabd9cc
 
 ---
 
