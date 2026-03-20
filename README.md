@@ -1,7 +1,7 @@
 # 📱 TecnoMax-Store · La Tienda de Tecnología con Estilo Industrial ⚙️
 
 ![TecnoMax Banner](https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80)  
-*(Imagen ilustrativa – reemplazar con captura real del proyecto)*
+
 
 **TecnoMax-Store** es una aplicación web de gestión de inventario para una tienda de dispositivos tecnológicos (móviles, TVs, consolas, videojuegos, PCs y laptops). Con un diseño **heavy metal / industrial** y una paleta de colores **azul tecno y naranja**, ofrece una experiencia de usuario robusta y visualmente impactante.  
 **Totalmente responsive** y con almacenamiento local (localStorage), permite **agregar, editar, eliminar y buscar productos**, además de contar con un **modal de detalles** y **filtros rápidos por categoría**.
@@ -43,7 +43,7 @@
 |-----------------|-------------------|-------------------|
 | ![Productos](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) | ![Modal](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) | ![Búsqueda](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) |
 
-*(Las imágenes son ilustrativas – reemplazar con capturas reales de la aplicación)*
+
 
 ---
 
