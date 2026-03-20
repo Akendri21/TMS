@@ -41,7 +41,7 @@
 
 | Vista principal | Modal de detalles | Búsqueda avanzada |
 |-----------------|-------------------|-------------------|
-| ![Productos](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) | ![Modal](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) | ![Búsqueda](https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop) |
+| ![Productos](https://copilot.microsoft.com/th/id/BCO.947481e8-568d-4e95-bfed-bc92e6c59fc0.png) | ![Modal](https://copilot.microsoft.com/th/id/BCO.2f0b3908-3a9e-49cb-88db-d11fc839397b.png) | ![Búsqueda](https://copilot.microsoft.com/th/id/BCO.8c7d46a8-b7e3-417a-be92-32ffe07e1a86.png) |
 
 
 
