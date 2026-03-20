@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 TecnoMax · Store</title>
+    <style>
+        /* ----- ESTILOS GENERALES - VERSIÓN HEAVY METAL / TECNO ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Bebas Neue', 'Oswald', 'Impact', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #1a1e24;
+            color: #d4d9e2;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                linear-gradient(45deg, #232830 1px, transparent 1px),
+                linear-gradient(-45deg, #232830 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Encabezado con textura de metal remachado - colores azul tecno */
+        .airport-header {
+            background: linear-gradient(170deg, #1f3a4b, #0f252e);
+            border: 3px solid #2a6b8f;
+            border-radius: 0px 40px 0px 40px;
+            box-shadow: 0 10px 0 #0b141a, 0 0 0 2px #3fa2d0 inset;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            color: #00c3ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .airport-header::before {
+            content: "";
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px dashed #2f9fd6;
+            pointer-events: none;
+        }
+
+        .airport-header h1 {
+            font-weight: 700;
+            font-size: 2.4rem;
+            text-shadow: 3px 3px 0 #0a1a24;
+            color: #00a8ff;
+        }
+
+        .airport-header h1 span {
+            background: #1e3c4f;
+            padding: 0.2rem 1rem;
+            border-left: 4px solid #00a8ff;
+            color: #e0f2ff;
+        }
+
+        .badge-airport {
+            background: #12394d;
+            border: 2px solid #1f90c0;
+            padding: 0.7rem 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 0 #0b1f2b, 0 0 0 1px #ffaa33 inset;
+            color: #ffaa33;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 0px 30px 0px 30px;
+        }
+
+        .badge-airport::before {
+            content: "⚡";
+            font-size: 1.5rem;
+            filter: drop-shadow(0 2px 0 #000);
+        }
+
+        /* Menú de navegación - estilo remaches */
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            background: #1a3340;
+            border: 3px solid #2f7fb0;
+            border-radius: 0px 40px 0px 40px;
+            padding: 0.8rem 1.8rem;
+            box-shadow: 0 8px 0 #0e1e2b, 0 0 0 2px #ffaa33 inset;
+            margin-bottom: 2rem;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 0px 20px 0px 20px;
+            color: #c9d1dc;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid #2f7fb0;
+            box-shadow: 0 3px 0 #0e1e2b;
+        }
+
+        .nav-btn:hover {
+            background: #1f4b63;
+            color: #00c3ff;
+            border-color: #00a8ff;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 0 #1a3a4a;
+        }
+
+        .nav-btn.active {
+            background: #1f5f7a;
+            color: #ffaa33;
+            border-color: #ffaa33;
+            box-shadow: 0 5px 0 #b3741a, 0 0 0 2px #ffe1a0 inset;
+        }
+
+        /* Filtros rápidos de categoría */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: #1f3340;
+            border: 3px solid #2f7fb0;
+            border-radius: 0px 30px 0px 30px;
+            padding: 1rem;
+        }
+        .filter-btn {
+            background: #2f4a5c;
+            border: 2px solid #2f7fb0;
+            border-radius: 0px 20px 0px 20px;
+            color: #e0f2ff;
+            padding: 0.5rem 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.1s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 0 #0e1e2b;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #1f5f7a;
+            color: #ffaa33;
+            border-color: #ffaa33;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 0 #b3741a;
+        }
+
+        /* Secciones - metal oxidado con acentos azules */
+        .section {
+            display: none;
+            background: #1a2a33;
+            border: 4px solid #1f6d9e;
+            border-radius: 0px 50px 0px 50px;
+            padding: 2rem;
+            box-shadow: 0 15px 0 #0e1f2b, 0 0 0 3px #8f8f8f inset;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section::after {
+            content: "📱";
+            position: absolute;
+            bottom: 10px; right: 20px;
+            font-size: 2rem;
+            opacity: 0.2;
+            color: #00a8ff;
+            transform: rotate(15deg);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00a8ff;
+            border-left: 8px solid #ffaa33;
+            padding-left: 1.2rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 0 #10222b;
+        }
+
+        h3 {
+            color: #ffaa33;
+            font-size: 1.8rem;
+            margin: 1rem 0;
+            font-weight: 400;
+            border-bottom: 2px dashed #2f7fb0;
+            padding-bottom: 0.3rem;
+        }
+
+        /* Formularios - con aspecto de chapa */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            background: #1f3340;
+            border: 3px solid #2f7fb0;
+            border-radius: 0px 30px 0px 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: inset 0 2px 8px #10141c, 0 6px 0 #0e1f2b;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #ffaa33;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.8rem 1rem;
+            background: #1e2d38;
+            border: 2px solid #2f7fb0;
+            border-radius: 0px 20px 0px 20px;
+            font-size: 1rem;
+            color: #f0f6ff;
+            transition: 0.2s;
+            box-shadow: inset 0 2px 5px #0b141c;
+            font-family: 'Courier New', monospace;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #ffaa33;
+            outline: none;
+            box-shadow: 0 0 0 3px #b3741a, inset 0 2px 5px #000;
+        }
+
+        /* Botones pesados */
+        .btn {
+            background: #1f5f7a;
+            border: 3px solid #2f9fd6;
+            border-radius: 0px 30px 0px 30px;
+            color: #ffeecd;
+            padding: 0.8rem 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 0 7px 0 #123a4a, 0 0 0 2px #ffaa33 inset;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            align-self: end;
+        }
+
+        .btn:hover {
+            background: #2f7fb0;
+            transform: translateY(-2px);
+            box-shadow: 0 9px 0 #123a4a, 0 0 0 2px #ffaa33 inset;
+        }
+
+        .btn-secondary {
+            background: #2f4a5c;
+            box-shadow: 0 6px 0 #1a3340, 0 0 0 2px #8096b0 inset;
+        }
+
+        .btn-secondary:hover {
+            background: #3f6b87;
+        }
+
+        .btn-danger {
+            background: #4f2f2f;
+            border-color: #a15151;
+            box-shadow: 0 6px 0 #361e1e, 0 0 0 2px #ff7d7d inset;
+        }
+
+        .btn-danger:hover {
+            background: #6d3f3f;
+        }
+
+        .btn-small {
+            padding: 0.4rem 1.2rem;
+            font-size: 1rem;
+            box-shadow: 0 4px 0 #222;
+        }
+
+        /* Tablas - estilo terminal de datos */
+        .table-responsive {
+            overflow-x: auto;
+            border: 4px solid #1f6d9e;
+            border-radius: 0px 30px 0px 30px;
+            background: #14242e;
+            box-shadow: 0 10px 0 #0e1f2b;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #14242e;
+        }
+
+        th {
+            background: #1f4b63;
+            color: #ffaa33;
+            font-weight: 700;
+            padding: 1rem 0.8rem;
+            text-align: left;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #2f9fd6;
+        }
+
+        td {
+            padding: 0.9rem 0.8rem;
+            border-bottom: 2px solid #2f4a6b;
+            color: #ced5e0;
+            font-family: 'Courier New', monospace;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #1a3340;
+        }
+
+        tbody tr:hover {
+            background: #1f4b63;
+            border-left: 4px solid #ffaa33;
+            cursor: pointer;
+        }
+
+        /* Imagen en tabla */
+        .product-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border: 2px solid #ffaa33;
+            border-radius: 0px 10px 0px 10px;
+        }
+
+        /* Alertas - con estilo de panel de advertencia */
+        .alert-card {
+            background: #1f4a33;
+            border-left: 10px solid #ffaa33;
+            padding: 1.2rem;
+            border-radius: 0px 30px 0px 30px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid #ffaa33;
+            box-shadow: 0 6px 0 #3a6b1f;
+            color: #ffd78a;
+            text-transform: uppercase;
+        }
+
+        .alert-icon {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 0 #af7200);
+        }
+
+        /* Modal de detalles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #1a2a33;
+            border: 5px solid #2f7fb0;
+            border-radius: 0px 50px 0px 50px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 0 #0e1f2b, 0 0 0 5px #ffaa33 inset;
+            position: relative;
+            color: #e0f2ff;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            border-left: none;
+            text-align: center;
+        }
+        .modal-img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border: 3px solid #ffaa33;
+            border-radius: 0px 30px 0px 30px;
+            margin: 1rem 0;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: #ffaa33;
+            cursor: pointer;
+        }
+        .modal-close:hover {
+            color: #ff7b00;
+        }
+
+        /* Oculto */
+        .hidden-id {
+            display: none;
+        }
+
+        /* Scrollbar heavy */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e242e;
+            border: 1px solid #2f7fb0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f6d9e;
+            border-radius: 0px;
+            border: 2px solid #7f8ca3;
+            box-shadow: inset 0 0 5px #000;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #7f8c9e;
+            border-top: 3px solid #2f7fb0;
+            padding-top: 1.5rem;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .airport-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .nav-menu {
+                border-radius: 0px 30px 0px 30px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="airport-header">
+        <h1>📱 <span>TECNO MAX</span> · STORE</h1>
+        <div class="badge-airport">⚡ 60 productos reales</div>
+    </header>
+
+    <nav class="nav-menu">
+        <button class="nav-btn active" data-section="products">📱 Productos</button>
+        <button class="nav-btn" data-section="search">🔍 Búsqueda</button>
+        <button class="nav-btn" data-section="offers">⚡ Ofertas</button>
+    </nav>
+
+    <!-- SECCIÓN PRODUCTOS (CRUD + FILTROS POR CATEGORÍA) -->
+    <section id="productsSection" class="section active">
+        <h2>Gestión de productos</h2>
+        <!-- Filtros rápidos por categoría -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="Móvil">📱 Móviles</button>
+            <button class="filter-btn" data-filter="TV">📺 TVs</button>
+            <button class="filter-btn" data-filter="Consola">🎮 Consolas</button>
+            <button class="filter-btn" data-filter="Videojuego">🕹️ Videojuegos</button>
+            <button class="filter-btn" data-filter="PC">💻 PCs</button>
+            <button class="filter-btn" data-filter="Laptop">💻 Laptops</button>
+        </div>
+
+        <div class="form-grid" id="productForm">
+            <div class="form-group hidden-id">
+                <label>ID</label>
+                <input type="text" id="productId" readonly>
+            </div>
+            <div class="form-group"><label>Nombre</label><input type="text" id="prodName" placeholder="Ej. iPhone 15"></div>
+            <div class="form-group"><label>Categoría</label>
+                <select id="prodCategory">
+                    <option value="Móvil">📱 Móvil</option>
+                    <option value="TV">📺 TV</option>
+                    <option value="Consola">🎮 Consola</option>
+                    <option value="Videojuego">🕹️ Videojuego</option>
+                    <option value="PC">💻 PC</option>
+                    <option value="Laptop">💻 Laptop</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Precio (€)</label><input type="number" id="prodPrice" placeholder="599" min="0" step="0.01"></div>
+            <div class="form-group"><label>URL imagen</label><input type="url" id="prodImage" placeholder="https://ejemplo.com/imagen.jpg"></div>
+            <div class="form-group"><label>Descripción</label><input type="text" id="prodDesc" placeholder="Breve descripción"></div>
+            <div>
+                <button class="btn" id="addProductBtn">➕ Agregar producto</button>
+                <button class="btn-secondary" id="cancelEditBtn" style="display:none;">Cancelar</button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead><tr><th>Imagen</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Descripción</th><th>Acciones</th></tr></thead>
+                <tbody id="productsTableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECCIÓN BÚSQUEDA -->
+    <section id="searchSection" class="section">
+        <h2>Búsqueda de productos</h2>
+        <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px,1fr));">
+            <div class="form-group">
+                <label>🔍 Buscar (nombre/descripción)</label>
+                <input type="text" id="searchText" placeholder="Ej. iPhone">
+            </div>
+            <div class="form-group">
+                <label>📂 Categoría</label>
+                <select id="filterCategory">
+                    <option value="">Todas</option>
+                    <option value="Móvil">Móvil</option>
+                    <option value="TV">TV</option>
+                    <option value="Consola">Consola</option>
+                    <option value="Videojuego">Videojuego</option>
+                    <option value="PC">PC</option>
+                    <option value="Laptop">Laptop</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>💰 Precio mínimo</label>
+                <input type="number" id="filterMinPrice" placeholder="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>💰 Precio máximo</label>
+                <input type="number" id="filterMaxPrice" placeholder="1000" min="0">
+            </div>
+            <div style="display: flex; gap:0.5rem; align-items: end;">
+                <button class="btn-secondary" id="applySearchFilters">Aplicar filtros</button>
+                <button class="btn-secondary" id="resetSearchFilters">Limpiar</button>
+            </div>
+        </div>
+
+        <h3>Resultados</h3>
+        <div class="table-responsive">
+            <table>
+                <thead><tr><th>Imagen</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Descripción</th></tr></thead>
+                <tbody id="searchTableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECCIÓN OFERTAS -->
+    <section id="offersSection" class="section">
+        <h2>⚡ Ofertas especiales</h2>
+        <div class="alert-card">
+            <span class="alert-icon">🔥</span>
+            <span>Productos con precio inferior a 300 €</span>
+        </div>
+        <div id="offersContainer"></div>
+        <div class="table-responsive">
+            <table>
+                <thead><tr><th>Imagen</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Descripción</th></tr></thead>
+                <tbody id="offersTableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- MODAL DE DETALLES DEL PRODUCTO -->
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <h2 id="modalTitle">Detalles del producto</h2>
+            <img id="modalImage" class="modal-img" src="" alt="Producto">
+            <p><strong>Nombre:</strong> <span id="modalName"></span></p>
+            <p><strong>Categoría:</strong> <span id="modalCategory"></span></p>
+            <p><strong>Precio:</strong> <span id="modalPrice"></span> €</p>
+            <p><strong>Descripción:</strong> <span id="modalDesc"></span></p>
+        </div>
+    </div>
+
+    <footer>📱 Datos guardados en el navegador · TecnoMax Store</footer>
+
+    <script>
+        (function() {
+            // 60 productos reales con imágenes de Unsplash (10 por categoría)
+            function generarProductosIniciales() {
+                return [
+                    // MÓVILES (10)
+                    { id: 'MOV1', nombre: 'iPhone 15 Pro Max', categoria: 'Móvil', precio: 1299, imagen: 'https://images.unsplash.com/photo-1695048133142-1a20484d2568?w=200&h=200&fit=crop', descripcion: 'Apple A17 Pro, 256GB, Titanio azul' },
+                    { id: 'MOV2', nombre: 'Samsung Galaxy S24 Ultra', categoria: 'Móvil', precio: 1199, imagen: 'https://images.unsplash.com/photo-1706854575454-95e5e566d6c6?w=200&h=200&fit=crop', descripcion: 'Pantalla Dynamic AMOLED 2X, 512GB, S Pen' },
+                    { id: 'MOV3', nombre: 'Xiaomi 14 Pro', categoria: 'Móvil', precio: 899, imagen: 'https://images.unsplash.com/photo-1707234482698-2e2c4e1b3e7a?w=200&h=200&fit=crop', descripcion: 'Leica Summilux, Snapdragon 8 Gen 3' },
+                    { id: 'MOV4', nombre: 'Google Pixel 8 Pro', categoria: 'Móvil', precio: 999, imagen: 'https://images.unsplash.com/photo-1696426065168-5f2f0e6a7b0b?w=200&h=200&fit=crop', descripcion: 'Cámara con IA, Android 14, 128GB' },
+                    { id: 'MOV5', nombre: 'OnePlus 12', categoria: 'Móvil', precio: 849, imagen: 'https://images.unsplash.com/photo-1706049392767-1f9f1e1a1b1b?w=200&h=200&fit=crop', descripcion: 'Hasselblad, 16GB RAM, 256GB' },
+                    { id: 'MOV6', nombre: 'Motorola Edge 40 Pro', categoria: 'Móvil', precio: 799, imagen: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop', descripcion: 'Pantalla pOLED 165Hz, 125W carga' },
+                    { id: 'MOV7', nombre: 'Sony Xperia 1 V', categoria: 'Móvil', precio: 1199, imagen: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&h=200&fit=crop', descripcion: 'Pantalla 4K HDR, cámara profesional' },
+                    { id: 'MOV8', nombre: 'Nothing Phone (2)', categoria: 'Móvil', precio: 699, imagen: 'https://images.unsplash.com/photo-1678912348975-3d4c5b1a5b1a?w=200&h=200&fit=crop', descripcion: 'Glyph Interface, Snapdragon 8+' },
+                    { id: 'MOV9', nombre: 'Realme GT 5 Pro', categoria: 'Móvil', precio: 749, imagen: 'https://images.unsplash.com/photo-1686943976712-7e5b8f7b2c1a?w=200&h=200&fit=crop', descripcion: 'Carga 240W, cámara periscopio' },
+                    { id: 'MOV10', nombre: 'Huawei P60 Pro', categoria: 'Móvil', precio: 1099, imagen: 'https://images.unsplash.com/photo-1686943976812-5f8b1f3b1c2a?w=200&h=200&fit=crop', descripcion: 'Cámara XMAGE, HarmonyOS' },
+
+                    // TVs (10)
+                    { id: 'TV1', nombre: 'LG OLED C3 65"', categoria: 'TV', precio: 1999, imagen: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=200&h=200&fit=crop', descripcion: 'OLED evo, 4K, 120Hz, Smart TV' },
+                    { id: 'TV2', nombre: 'Samsung QLED Q80C 55"', categoria: 'TV', precio: 1299, imagen: 'https://images.unsplash.com/photo-1601944179066-29786cb9d32a?w=200&h=200&fit=crop', descripcion: 'Quantum HDR, 4K, 120Hz' },
+                    { id: 'TV3', nombre: 'Sony Bravia XR A80L 55"', categoria: 'TV', precio: 1499, imagen: 'https://images.unsplash.com/photo-1612428970260-2f7b0a1c3c0b?w=200&h=200&fit=crop', descripcion: 'OLED, Cognitive Processor XR, Google TV' },
+                    { id: 'TV4', nombre: 'Panasonic TX-65MZ980', categoria: 'TV', precio: 1799, imagen: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d6?w=200&h=200&fit=crop', descripcion: 'OLED 4K, HDR10+, Dolby Atmos' },
+                    { id: 'TV5', nombre: 'Philips OLED+908 55"', categoria: 'TV', precio: 2199, imagen: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=200&h=200&fit=crop', descripcion: 'Ambilight, 4K, 120Hz, 5ª Gen P5' },
+                    { id: 'TV6', nombre: 'TCL C845 65"', categoria: 'TV', precio: 999, imagen: 'https://images.unsplash.com/photo-1601944179066-29786cb9d32a?w=200&h=200&fit=crop', descripcion: 'QLED Mini-LED, 4K, 144Hz' },
+                    { id: 'TV7', nombre: 'Hisense U8K 55"', categoria: 'TV', precio: 899, imagen: 'https://images.unsplash.com/photo-1612428970260-2f7b0a1c3c0b?w=200&h=200&fit=crop', descripcion: 'Mini-LED, 4K, 144Hz, Dolby Vision' },
+                    { id: 'TV8', nombre: 'Xiaomi TV Q2 55"', categoria: 'TV', precio: 599, imagen: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d6?w=200&h=200&fit=crop', descripcion: 'QLED, 4K, Google TV, 60Hz' },
+                    { id: 'TV9', nombre: 'Sharp 4T-C65GN1X', categoria: 'TV', precio: 849, imagen: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=200&h=200&fit=crop', descripcion: '4K, Android TV, HDR10' },
+                    { id: 'TV10', nombre: 'Vizio MQX 50"', categoria: 'TV', precio: 699, imagen: 'https://images.unsplash.com/photo-1601944179066-29786cb9d32a?w=200&h=200&fit=crop', descripcion: 'QLED, 4K, 120Hz, SmartCast' },
+
+                    // CONSOLAS (10)
+                    { id: 'CON1', nombre: 'Sony PlayStation 5', categoria: 'Consola', precio: 549, imagen: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=200&h=200&fit=crop', descripcion: 'PS5 estándar, 825GB SSD, mando DualSense' },
+                    { id: 'CON2', nombre: 'Xbox Series X', categoria: 'Consola', precio: 549, imagen: 'https://images.unsplash.com/photo-1621259182978-fbf931c6d5b3?w=200&h=200&fit=crop', descripcion: '1TB SSD, 4K, 120Hz, Game Pass' },
+                    { id: 'CON3', nombre: 'Nintendo Switch OLED', categoria: 'Consola', precio: 349, imagen: 'https://images.unsplash.com/photo-1618332676613-f5f7f5e5c5b2?w=200&h=200&fit=crop', descripcion: 'Pantalla OLED 7", 64GB, Joy-Con' },
+                    { id: 'CON4', nombre: 'Steam Deck 512GB', categoria: 'Consola', precio: 649, imagen: 'https://images.unsplash.com/photo-1678912342350-5d9d9c5c4c7a?w=200&h=200&fit=crop', descripcion: 'PC portátil, 512GB NVMe, APU AMD' },
+                    { id: 'CON5', nombre: 'PlayStation 5 Digital', categoria: 'Consola', precio: 449, imagen: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=200&h=200&fit=crop', descripcion: 'Edición digital, 825GB SSD' },
+                    { id: 'CON6', nombre: 'Xbox Series S', categoria: 'Consola', precio: 299, imagen: 'https://images.unsplash.com/photo-1621259182978-fbf931c6d5b3?w=200&h=200&fit=crop', descripcion: '512GB SSD, digital, 1440p' },
+                    { id: 'CON7', nombre: 'Nintendo Switch Lite', categoria: 'Consola', precio: 199, imagen: 'https://images.unsplash.com/photo-1618332676613-f5f7f5e5c5b2?w=200&h=200&fit=crop', descripcion: 'Portátil, 32GB, azul' },
+                    { id: 'CON8', nombre: 'ASUS ROG Ally', categoria: 'Consola', precio: 699, imagen: 'https://images.unsplash.com/photo-1678912342350-5d9d9c5c4c7a?w=200&h=200&fit=crop', descripcion: 'PC portátil gaming, Z1 Extreme' },
+                    { id: 'CON9', nombre: 'Logitech G Cloud', categoria: 'Consola', precio: 299, imagen: 'https://images.unsplash.com/photo-1678912342350-5d9d9c5c4c7a?w=200&h=200&fit=crop', descripcion: 'Cloud gaming, Android, 7"' },
+                    { id: 'CON10', nombre: 'Atari VCS', categoria: 'Consola', precio: 249, imagen: 'https://images.unsplash.com/photo-1678912342350-5d9d9c5c4c7a?w=200&h=200&fit=crop', descripcion: 'Clásica, 500GB, juegos retro' },
+
+                    // VIDEOJUEGOS (10)
+                    { id: 'VID1', nombre: 'The Legend of Zelda: Tears of the Kingdom', categoria: 'Videojuego', precio: 69, imagen: 'https://images.unsplash.com/photo-1618332676613-f5f7f5e5c5b2?w=200&h=200&fit=crop', descripcion: 'Nintendo Switch, Aventura' },
+                    { id: 'VID2', nombre: 'FIFA 24', categoria: 'Videojuego', precio: 59, imagen: 'https://images.unsplash.com/photo-1625805866449-5f7c8c7b8b1b?w=200&h=200&fit=crop', descripcion: 'PS5/Xbox/PC, Fútbol' },
+                    { id: 'VID3', nombre: 'God of War Ragnarök', categoria: 'Videojuego', precio: 69, imagen: 'https://images.unsplash.com/photo-1618332676613-f5f7f5e5c5b2?w=200&h=200&fit=crop', descripcion: 'PS5, Acción/Aventura' },
+                    { id: 'VID4', nombre: 'Call of Duty: Modern Warfare III', categoria: 'Videojuego', precio: 69, imagen: 'https://images.unsplash.com/photo-1625805866449-5f7c8c7b8b1b?w=200&h=200&fit=crop', descripcion: 'PS5/Xbox/PC, FPS' },
+                    { id: 'VID5', nombre: 'Spider-Man 2', categoria: 'Videojuego', precio: 69, imagen: 'https://images.unsplash.com/photo-1618332676613-f5f7f5e5c5b2?w=200&h=200&fit=crop', descripcion: 'PS5, Mundo abierto' },
+                    { id: 'VID6', nombre: 'Mario Kart 8 Deluxe', categoria: 'Videojuego', precio: 49, imagen: 'https://images.unsplash.com/photo-1618332676613-f5f7f5e5c5b2?w=200&h=200&fit=crop', descripcion: 'Nintendo Switch, Carreras' },
+                    { id: 'VID7', nombre: 'Elden Ring', categoria: 'Videojuego', precio: 59, imagen: 'https://images.unsplash.com/photo-1618332676613-f5f7f5e5c5b2?w=200&h=200&fit=crop', descripcion: 'PS5/Xbox/PC, RPG' },
+                    { id: 'VID8', nombre: 'Minecraft', categoria: 'Videojuego', precio: 29, imagen: 'https://images.unsplash.com/photo-1625805866449-5f7c8c7b8b1b?w=200&h=200&fit=crop', descripcion: 'Multiplataforma, Construcción' },
+                    { id: 'VID9', nombre: 'Fortnite', categoria: 'Videojuego', precio: 0, imagen: 'https://images.unsplash.com/photo-1625805866449-5f7c8c7b8b1b?w=200&h=200&fit=crop', descripcion: 'Gratuito, Battle Royale' },
+                    { id: 'VID10', nombre: 'Grand Theft Auto V', categoria: 'Videojuego', precio: 39, imagen: 'https://images.unsplash.com/photo-1618332676613-f5f7f5e5c5b2?w=200&h=200&fit=crop', descripcion: 'PS5/Xbox/PC, Acción' },
+
+                    // PCs (10)
+                    { id: 'PC1', nombre: 'Alienware Aurora R16', categoria: 'PC', precio: 2499, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'Intel i9, RTX 4090, 32GB RAM' },
+                    { id: 'PC2', nombre: 'HP Omen 45L', categoria: 'PC', precio: 2199, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'i7, RTX 4080, 32GB RAM, 1TB SSD' },
+                    { id: 'PC3', nombre: 'Lenovo Legion Tower 7i', categoria: 'PC', precio: 1999, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'i7, RTX 4070 Ti, 16GB RAM' },
+                    { id: 'PC4', nombre: 'ASUS ROG Strix GA35', categoria: 'PC', precio: 2799, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'Ryzen 9, RTX 4090, 64GB RAM' },
+                    { id: 'PC5', nombre: 'MSI Trident X', categoria: 'PC', precio: 1899, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'i7, RTX 4070, 16GB RAM' },
+                    { id: 'PC6', nombre: 'Acer Predator Orion 3000', categoria: 'PC', precio: 1299, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'i5, RTX 3060, 16GB RAM' },
+                    { id: 'PC7', nombre: 'Corsair Vengeance i7400', categoria: 'PC', precio: 2299, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'i9, RTX 4080, 32GB RAM' },
+                    { id: 'PC8', nombre: 'Razer Tomahawk', categoria: 'PC', precio: 2599, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'i9, RTX 4090, 32GB RAM' },
+                    { id: 'PC9', nombre: 'Origin PC Millennium', categoria: 'PC', precio: 3299, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'Ryzen 9, RTX 4090, 64GB RAM' },
+                    { id: 'PC10', nombre: 'Dell XPS Desktop', categoria: 'PC', precio: 1499, imagen: 'https://images.unsplash.com/photo-1603487742131-4160ec2b4a8c?w=200&h=200&fit=crop', descripcion: 'i7, RTX 3060, 16GB RAM' },
+
+                    // LAPTOPS (10)
+                    { id: 'LAP1', nombre: 'MacBook Pro 16" M3', categoria: 'Laptop', precio: 2499, imagen: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&h=200&fit=crop', descripcion: 'M3 Max, 48GB RAM, 1TB SSD' },
+                    { id: 'LAP2', nombre: 'Dell XPS 15', categoria: 'Laptop', precio: 1899, imagen: 'https://images.unsplash.com/photo-1593642634367-d91a135587b5?w=200&h=200&fit=crop', descripcion: 'Intel i9, RTX 4060, 32GB RAM' },
+                    { id: 'LAP3', nombre: 'HP Spectre x360 14"', categoria: 'Laptop', precio: 1499, imagen: 'https://images.unsplash.com/photo-1588872657578-7e9e1b4b7b1a?w=200&h=200&fit=crop', descripcion: 'i7, 16GB RAM, 1TB SSD, OLED' },
+                    { id: 'LAP4', nombre: 'Lenovo ThinkPad X1 Carbon', categoria: 'Laptop', precio: 1799, imagen: 'https://images.unsplash.com/photo-1588872657578-7e9e1b4b7b1a?w=200&h=200&fit=crop', descripcion: 'i7, 16GB RAM, 512GB SSD' },
+                    { id: 'LAP5', nombre: 'ASUS ROG Zephyrus G14', categoria: 'Laptop', precio: 1599, imagen: 'https://images.unsplash.com/photo-1588872657578-7e9e1b4b7b1a?w=200&h=200&fit=crop', descripcion: 'Ryzen 9, RTX 4060, 16GB RAM' },
+                    { id: 'LAP6', nombre: 'Acer Swift 3', categoria: 'Laptop', precio: 699, imagen: 'https://images.unsplash.com/photo-1588872657578-7e9e1b4b7b1a?w=200&h=200&fit=crop', descripcion: 'Ryzen 5, 8GB RAM, 512GB SSD' },
+                    { id: 'LAP7', nombre: 'Microsoft Surface Laptop 5', categoria: 'Laptop', precio: 1299, imagen: 'https://images.unsplash.com/photo-1588872657578-7e9e1b4b7b1a?w=200&h=200&fit=crop', descripcion: 'i5, 16GB RAM, 256GB SSD' },
+                    { id: 'LAP8', nombre: 'Razer Blade 15', categoria: 'Laptop', precio: 2299, imagen: 'https://images.unsplash.com/photo-1588872657578-7e9e1b4b7b1a?w=200&h=200&fit=crop', descripcion: 'i7, RTX 4070, 16GB RAM' },
+                    { id: 'LAP9', nombre: 'Gigabyte Aorus 17', categoria: 'Laptop', precio: 2099, imagen: 'https://images.unsplash.com/photo-1588872657578-7e9e1b4b7b1a?w=200&h=200&fit=crop', descripcion: 'i9, RTX 4080, 32GB RAM' },
+                    { id: 'LAP10', nombre: 'MSI Prestige 14', categoria: 'Laptop', precio: 1199, imagen: 'https://images.unsplash.com/photo-1588872657578-7e9e1b4b7b1a?w=200&h=200&fit=crop', descripcion: 'i7, 16GB RAM, 512GB SSD' }
+                ];
+            }
+
+            function initData() {
+                if (!localStorage.getItem('productos')) {
+                    const productos = generarProductosIniciales();
+                    localStorage.setItem('productos', JSON.stringify(productos));
+                }
+            }
+            initData();
+
+            function getProductos() {
+                return JSON.parse(localStorage.getItem('productos')) || [];
+            }
+            function saveProductos(productos) {
+                localStorage.setItem('productos', JSON.stringify(productos));
+            }
+
+            function generarId() {
+                return 'T' + Date.now().toString().slice(-7) + Math.floor(Math.random()*100);
+            }
+
+            // Elementos del DOM
+            const navBtns = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('.section');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            const productId = document.getElementById('productId');
+            const prodName = document.getElementById('prodName');
+            const prodCategory = document.getElementById('prodCategory');
+            const prodPrice = document.getElementById('prodPrice');
+            const prodImage = document.getElementById('prodImage');
+            const prodDesc = document.getElementById('prodDesc');
+            const addProductBtn = document.getElementById('addProductBtn');
+            const cancelEditBtn = document.getElementById('cancelEditBtn');
+            const productsTableBody = document.getElementById('productsTableBody');
+
+            const searchText = document.getElementById('searchText');
+            const filterCategory = document.getElementById('filterCategory');
+            const filterMinPrice = document.getElementById('filterMinPrice');
+            const filterMaxPrice = document.getElementById('filterMaxPrice');
+            const applySearchFilters = document.getElementById('applySearchFilters');
+            const resetSearchFilters = document.getElementById('resetSearchFilters');
+            const searchTableBody = document.getElementById('searchTableBody');
+
+            const offersTableBody = document.getElementById('offersTableBody');
+            const offersContainer = document.getElementById('offersContainer');
+
+            // Modal
+            const modal = document.getElementById('productModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalName = document.getElementById('modalName');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalPrice = document.getElementById('modalPrice');
+            const modalDesc = document.getElementById('modalDesc');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            let editingId = null;
+            let currentFilter = 'todos'; // filtro activo en productos
+
+            // Función para abrir modal
+            function abrirModal(producto) {
+                modalImage.src = producto.imagen || 'https://placehold.co/300?text=No+image';
+                modalName.textContent = producto.nombre;
+                modalCategory.textContent = producto.categoria;
+                modalPrice.textContent = producto.precio;
+                modalDesc.textContent = producto.descripcion || 'Sin descripción';
+                modal.style.display = 'flex';
+            }
+
+            closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
+            window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+
+            // Renderizar tabla de productos aplicando filtro actual
+            function renderProducts() {
+                const productos = getProductos();
+                let filtered = productos;
+                if (currentFilter !== 'todos') {
+                    filtered = productos.filter(p => p.categoria === currentFilter);
+                }
+
+                productsTableBody.innerHTML = '';
+                filtered.forEach(p => {
+                    const tr = document.createElement('tr');
+                    tr.setAttribute('data-id', p.id);
+                    tr.addEventListener('click', (e) => {
+                        if (e.target.tagName === 'BUTTON') return;
+                        abrirModal(p);
+                    });
+                    tr.innerHTML = `
+                        <td><img src="${p.imagen || 'https://placehold.co/50?text=No+img'}" alt="${p.nombre}" class="product-img" onerror="this.src='https://placehold.co/50?text=Error'"></td>
+                        <td>${p.nombre}</td>
+                        <td>${p.categoria}</td>
+                        <td>${p.precio} €</td>
+                        <td>${p.descripcion || ''}</td>
+                        <td>
+                            <button class="btn-small btn-secondary" onclick="event.stopPropagation(); editarProducto('${p.id}')">✏️ Editar</button>
+                            <button class="btn-small btn-danger" onclick="event.stopPropagation(); eliminarProducto('${p.id}')">🗑️ Eliminar</button>
+                        </td>
+                    `;
+                    productsTableBody.appendChild(tr);
+                });
+            }
+
+            // Renderizar tabla de búsqueda
+            function renderSearch(productosFiltrados = null) {
+                let productos = productosFiltrados || getProductos();
+                searchTableBody.innerHTML = '';
+                productos.forEach(p => {
+                    const tr = document.createElement('tr');
+                    tr.setAttribute('data-id', p.id);
+                    tr.addEventListener('click', () => abrirModal(p));
+                    tr.innerHTML = `
+                        <td><img src="${p.imagen || 'https://placehold.co/50?text=No+img'}" alt="${p.nombre}" class="product-img" onerror="this.src='https://placehold.co/50?text=Error'"></td>
+                        <td>${p.nombre}</td>
+                        <td>${p.categoria}</td>
+                        <td>${p.precio} €</td>
+                        <td>${p.descripcion || ''}</td>
+                    `;
+                    searchTableBody.appendChild(tr);
+                });
+            }
+
+            // Renderizar ofertas
+            function renderOffers() {
+                const productos = getProductos();
+                const ofertas = productos.filter(p => p.precio < 300);
+                offersTableBody.innerHTML = '';
+                if (ofertas.length === 0) {
+                    offersTableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No hay ofertas en este momento</td></tr>';
+                } else {
+                    ofertas.forEach(p => {
+                        const tr = document.createElement('tr');
+                        tr.setAttribute('data-id', p.id);
+                        tr.addEventListener('click', () => abrirModal(p));
+                        tr.innerHTML = `
+                            <td><img src="${p.imagen || 'https://placehold.co/50?text=No+img'}" alt="${p.nombre}" class="product-img" onerror="this.src='https://placehold.co/50?text=Error'"></td>
+                            <td>${p.nombre}</td>
+                            <td>${p.categoria}</td>
+                            <td>${p.precio} €</td>
+                            <td>${p.descripcion || ''}</td>
+                        `;
+                        offersTableBody.appendChild(tr);
+                    });
+                }
+                offersContainer.innerHTML = ofertas.length ? 
+                    `<div class="alert-card" style="background:#1f4a33;">🔥 Hay ${ofertas.length} productos con precio bajo.</div>` : '';
+            }
+
+            function refreshUI() {
+                renderProducts();
+                renderSearch();
+                renderOffers();
+            }
+
+            // Guardar producto
+            function guardarProducto() {
+                const nombre = prodName.value.trim();
+                const categoria = prodCategory.value;
+                const precio = parseFloat(prodPrice.value);
+                const imagen = prodImage.value.trim();
+                const descripcion = prodDesc.value.trim();
+
+                if (!nombre || !categoria || isNaN(precio) || precio < 0 || !imagen) {
+                    alert('Completa todos los campos obligatorios (nombre, categoría, precio válido, imagen).');
+                    return false;
+                }
+
+                let productos = getProductos();
+                if (editingId) {
+                    const index = productos.findIndex(p => p.id === editingId);
+                    if (index !== -1) {
+                        productos[index] = { ...productos[index], nombre, categoria, precio, imagen, descripcion };
+                        saveProductos(productos);
+                        cancelarEdicion();
+                    }
+                } else {
+                    const nuevo = {
+                        id: generarId(),
+                        nombre,
+                        categoria,
+                        precio,
+                        imagen,
+                        descripcion
+                    };
+                    productos.push(nuevo);
+                    saveProductos(productos);
+                }
+                limpiarFormulario();
+                refreshUI();
+                return true;
+            }
+
+            addProductBtn.addEventListener('click', guardarProducto);
+
+            window.eliminarProducto = function(id) {
+                if (confirm('¿Eliminar producto?')) {
+                    let productos = getProductos();
+                    productos = productos.filter(p => p.id !== id);
+                    saveProductos(productos);
+                    if (editingId === id) cancelarEdicion();
+                    refreshUI();
+                }
+            };
+
+            window.editarProducto = function(id) {
+                const productos = getProductos();
+                const p = productos.find(p => p.id === id);
+                if (!p) return;
+                editingId = id;
+                productId.value = p.id;
+                prodName.value = p.nombre;
+                prodCategory.value = p.categoria;
+                prodPrice.value = p.precio;
+                prodImage.value = p.imagen || '';
+                prodDesc.value = p.descripcion || '';
+                addProductBtn.textContent = '✏️ Actualizar producto';
+                cancelEditBtn.style.display = 'inline-block';
+            };
+
+            function cancelarEdicion() {
+                editingId = null;
+                productId.value = '';
+                addProductBtn.textContent = '➕ Agregar producto';
+                cancelEditBtn.style.display = 'none';
+                limpiarFormulario();
+            }
+
+            cancelEditBtn.addEventListener('click', cancelarEdicion);
+
+            function limpiarFormulario() {
+                prodName.value = '';
+                prodCategory.value = 'Móvil';
+                prodPrice.value = '';
+                prodImage.value = '';
+                prodDesc.value = '';
+            }
+
+            // Filtros de búsqueda
+            function aplicarFiltrosBusqueda() {
+                let productos = getProductos();
+                const texto = searchText.value.trim().toLowerCase();
+                const categoria = filterCategory.value;
+                const min = parseFloat(filterMinPrice.value);
+                const max = parseFloat(filterMaxPrice.value);
+
+                if (texto) {
+                    productos = productos.filter(p => 
+                        p.nombre.toLowerCase().includes(texto) ||
+                        (p.descripcion && p.descripcion.toLowerCase().includes(texto))
+                    );
+                }
+                if (categoria) {
+                    productos = productos.filter(p => p.categoria === categoria);
+                }
+                if (!isNaN(min)) {
+                    productos = productos.filter(p => p.precio >= min);
+                }
+                if (!isNaN(max)) {
+                    productos = productos.filter(p => p.precio <= max);
+                }
+                renderSearch(productos);
+            }
+
+            applySearchFilters.addEventListener('click', aplicarFiltrosBusqueda);
+            resetSearchFilters.addEventListener('click', () => {
+                searchText.value = '';
+                filterCategory.value = '';
+                filterMinPrice.value = '';
+                filterMaxPrice.value = '';
+                renderSearch(getProductos());
+            });
+
+            // Filtros rápidos por categoría en productos
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.dataset.filter;
+                    renderProducts();
+                });
+            });
+
+            // Navegación entre secciones
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const target = e.target.dataset.section;
+                    navBtns.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    sections.forEach(s => s.classList.remove('active'));
+                    document.getElementById(target + 'Section').classList.add('active');
+                    if (target === 'offers') renderOffers();
+                    if (target === 'products') renderProducts(); // asegurar filtro activo
+                });
+            });
+
+            // Inicializar UI
+            refreshUI();
+        })();
+    </script>
+</body>
+</html>
